@@ -33,7 +33,7 @@ def range(a, b=None, c=None):
     (And with some code golf I also wrote a l
     ess readable version that is only 4 lines.)
     It is very common for C programs to be 100x lon
-    ger than their corresponding python programs.
+    ger than their corresonding python programs.
     C code must manage lots of details about the c
     omputer manually that python code automates for you.
     Carefully written C code can be faster than the co
