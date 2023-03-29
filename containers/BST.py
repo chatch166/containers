@@ -61,6 +61,13 @@ class BST(BinaryTree):
         then compare those sorted lists for equality.
         '''
 
+        list1 = self.to_list('inorder')
+        list2 = t2.to_list('inorder')
+        if list1 == list2:
+            return True
+        else:
+            return False
+
     def __iter__(self):
         for value in super().__iter__():
             yield value
