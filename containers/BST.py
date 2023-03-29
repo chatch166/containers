@@ -37,7 +37,7 @@ class BST(BinaryTree):
         Thus, if you create a variable using the command BST([1,2,3])
         it's __repr__ will return "BST([1,2,3])"
 
-        For the BST, type(self).__name__ will be the string "BST",
+        For the BST,  type(self).__name__ will be the string "BST",
         but for the AVLTree, this expression will be "AVLTree".
         Using this expression ensures that all subclass
         es of BST will have a correct implementation of __repr__,

@@ -69,7 +69,7 @@ class AVLTree(BST):
 
         The lecture videos provide a high-level overview of tree rotations,
         and the textbook provides full python code.
-        The textbook's class hierarchy for their AVL tree code is fairly different from our class hierarchy,
+        The textbook's class  hierarchy for their AVL tree code is fairly different from our class hierarchy,
         however, so you will have to adapt their code.
         '''
 
