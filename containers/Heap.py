@@ -25,14 +25,14 @@ class Heap(BinaryTree):
         then each element of xs needs to be inserted into the Heap.
         '''
 
+        '''
         #self.root = None
-
         #self.num_nodes = 0
+        '''
         super().__init__()
         self.num_nodes = 0
         if xs:
             self.insert_list(xs)
-
 
     def __repr__(self):
         '''
@@ -100,6 +100,7 @@ class Heap(BinaryTree):
 
         self.num_nodes += 1
         binary_str = bin(self.num_nodes)[3:]
+
         if self.root is None:
             self.root = Node(value)
         else:
@@ -117,15 +118,17 @@ class Heap(BinaryTree):
             if node.value > node.left.value:
                 node.value, node.left.value = node.left.value, node.value
         if not binary_str:
+
             node = Node(value)
         elif binary_str[0] == '1':
+
             if len(binary_str) == 1:
                 node.right = Node(value)
             else:
                 Heap._insert(node.right, value, binary_str[1:])
             if node.value > node.right.value:
-                node.value, node.right.value = node.right.value, node.value
 
+                node.value, node.right.value = node.right.value, node.value
 
     def insert_list(self, xs):
         '''
@@ -170,6 +173,7 @@ class Heap(BinaryTree):
 
         binary_str = str(bin(self.num_nodes))[3:]
         biggest = Heap._remove_bottom_right(self.root, binary_str)
+
         self.num_nodes -= 1
         self.root.value = biggest
         Heap._trickle(self.root)
@@ -181,12 +185,14 @@ class Heap(BinaryTree):
                 if len(binary_str) == 1:
                     biggest = node.left.value
                     node.left = None
+
                 else:
                     biggest = Heap._remove_bottom_right(node.left, binary_str[1:])
             if binary_str[0] == "1":
                 if len(binary_str) == 1:
                     biggest = node.right.value
                     node.right = None
+
                 else:
                     biggest = Heap._remove_bottom_right(node.right, binary_str[1:])
             return biggest
@@ -194,6 +200,7 @@ class Heap(BinaryTree):
     @staticmethod
     def _trickle(node):
         if node.left and node.right:
+
             if node.value > node.right.value < node.left.value:
                 node.value, node.right.value = node.right.value, node.value
                 Heap._trickle(node.right)
@@ -204,4 +211,3 @@ class Heap(BinaryTree):
             if node.value > node.left.value:
                 node.value, node.left.value = node.left.value, node.value
                 Heap._trickle(node.left)
-
