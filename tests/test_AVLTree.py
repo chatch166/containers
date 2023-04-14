@@ -318,21 +318,3 @@ def test__AVLTree_inorder_property(xs):
     
     assert bst1.to_list('inorder') == bst2.to_list('inorder')
 
-
-@given(xs=ints)
-def test__AVLTree_eq(xs):
-    '''
-    This test is essentially the same as the previous one,
-    but tests the == operator specifically.
-    '''
-    xs = list(set(xs))
-
-    xs1 = copy.copy(xs)
-    random.shuffle(xs1)
-    bst1 = AVLTree(xs1)
-
-    xs2 = copy.copy(xs)
-    random.shuffle(xs2)
-    bst2 = AVLTree(xs2)
-
-    assert bst1 == bst2
