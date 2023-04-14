@@ -90,6 +90,7 @@ class BST(BinaryTree):
     def _is_bst_satisfied(node):
         '''
         FIXME:
+<<<<<<< HEAD
         The current implementation has a bug:
         it only checks if the children of the c
         urrent node are less than/greater than,
@@ -104,11 +105,22 @@ class BST(BinaryTree):
         '''
         ret = True
         if node.left:
+=======
+        Implement this method.
+        '''
+        ret = True
+        if node.left:
+            #if node.value >= node.left.value:
+>>>>>>> heap
             if node.value >= BST._find_largest(node.left):
                 ret &= BST._is_bst_satisfied(node.left)
             else:
                 ret = False
         if node.right:
+<<<<<<< HEAD
+=======
+            #if node.value <= node.right.value:
+>>>>>>> heap
             if node.value <= BST._find_smallest(node.right):
                 ret &= BST._is_bst_satisfied(node.right)
             else:
@@ -118,14 +130,35 @@ class BST(BinaryTree):
     def insert(self, value):
         '''
         Inserts value into the BST.
+        '''
+        if self.root is None:
+            self.root = Node(value)
+        else:
+            BST._insert(value, self.root)
 
+    @staticmethod
+    def _insert(value, node):
+        '''
         FIXME:
         Implement this function.
+<<<<<<< HEAD
 
         HINT:
         Create a staticmethod helper function follo
         wing the pattern of _is_bst_satisfied.
+=======
+>>>>>>> heap
         '''
+        if value < node.value:
+            if node.left is None:
+                node.left = Node(value)
+            else:
+                BST._insert(value, node.left)
+        elif value > node.value:
+            if node.right is None:
+                node.right = Node(value)
+            else:
+                BST._insert(value, node.right)
 
         if self.root:
             return BST._insert(self.root, value)
@@ -151,12 +184,17 @@ class BST(BinaryTree):
 
         FIXME:
         Implement this function.
+<<<<<<< HEAD
 
         HINT:
         Repeatedly call the insert method.
         You cannot get this method to work corr
         ectly until you have gotten insert to work correctly.
+=======
+>>>>>>> heap
         '''
+        for x in xs:
+            self.insert(x)
 
         for x in xs:
             if self.root:
@@ -173,10 +211,12 @@ class BST(BinaryTree):
     def find(self, value):
         '''
         Returns whether value is contained in the BST.
-
-        FIXME:
-        Implement this function.
         '''
+        if self.root:
+            if BST._find(value, self.root):
+                return True
+        else:
+            return False
 
         if self.root is None:
             return None
@@ -188,6 +228,12 @@ class BST(BinaryTree):
         FIXME:
         Implement this function.
         '''
+        if value > node.value and node.right:
+            return BST._find(value, node.right)
+        elif value < node.value and node.left:
+            return BST._find(value, node.left)
+        if value == node.value:
+            return True
 
         if node.value == value:
             return True
@@ -201,6 +247,13 @@ class BST(BinaryTree):
     def find_smallest(self):
         '''
         Returns the smallest value in the tree.
+
+        FIXME:
+        Implement this function.
+
+        HINT:
+        Create a recursive staticmethod helper function,
+        similar to how the insert and find functions have recursive helpers.
         '''
 
         if self.root:
@@ -210,12 +263,17 @@ class BST(BinaryTree):
 
     @staticmethod
     def _find_smallest(node):
+<<<<<<< HEAD
         '''
         This is a helper function for find_sm
         allest and not intended to be called directly by the user.
         '''
         assert Node is not None
         if not node.left:
+=======
+        assert node is not None
+        if node.left is None:
+>>>>>>> heap
             return node.value
         else:
             return BST._find_smallest(node.left)
@@ -228,8 +286,20 @@ class BST(BinaryTree):
         Implement this function.
 
         HINT:
-        Follow the pattern of the _find_smallest function.
+        Create a recursive staticmethod helper function.
         '''
+        if self.root is None:
+            raise ValueError('Nothing in tree')
+        else:
+            return BST._find_largest(self.root)
+
+    @staticmethod
+    def _find_largest(node):
+        assert node is not None
+        if node.right is None:
+            return node.value
+        else:
+            return BST._find_largest(node.right)
 
         if self.root:
             return BST._find_largest(self.root)
@@ -254,12 +324,48 @@ class BST(BinaryTree):
         Implement this function.
 
         HINT:
+<<<<<<< HEAD
         You should have everything else wor
         king before you implement this function.
+=======
+        You must have find_smallest/find_largest working correctly
+        before you can implement this function.
+>>>>>>> heap
 
         HINT:
         Use a recursive helper function.
         '''
+        self.root = BST._remove(self.root, value)
+
+    @staticmethod
+    def _remove(node, value):
+        if node is None:
+            return
+        if value > node.value and node.right:
+            node.right = BST._remove(node.right, value)
+            return node
+        elif value < node.value and node.left:
+            node.left = BST._remove(node.left, value)
+            return node
+        elif value == node.value:
+            if node.left is None and node.right is None:
+                return None
+            elif node.left is None:
+                return node.right
+            elif node.right is None:
+                return node.left
+            else:
+                smallest = BST._find_smallest(node.right)
+                if smallest == node.right.value:
+                    ret = node.right
+                    ret.left = node.left
+                else:
+                    ret = Node(smallest)
+                    ret.left = node.left
+                    ret.right = BST._remove(node.right, smallest)
+                return ret
+        else:
+            return node
 
         self.root = BST._remove(value, self.root)
 
@@ -289,10 +395,10 @@ class BST(BinaryTree):
 
         FIXME:
         Implement this function.
-
-        HINT:
-        See the insert_list function.
         '''
+<<<<<<< HEAD
 
+=======
+>>>>>>> heap
         for x in xs:
             self.remove(x)
