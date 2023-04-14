@@ -37,13 +37,36 @@ class BST(BinaryTree):
         Thus, if you create a variable using the command BST([1,2,3])
         it's __repr__ will return "BST([1,2,3])"
 
-        For the BST, type(self).__name__ will be the string "BST",
+        For the BST,  type(self).__name__ will be the string "BST",
         but for the AVLTree, this expression will be "AVLTree".
         Using this expression ensures that all subclass
         es of BST will have a correct implementation of __repr__,
         and that they won't have to reimplement it.
         '''
         return type(self).__name__ + '(' + str(self.to_list('inorder')) + ')'
+
+    def __eq__(self, t2):
+        '''
+        This method checks to see if the contents of self and t2 are equal.
+        The expression `a == b` desugars to `a.__eq__(b)`.
+
+        NOTE:
+        We only care about "semantic" equality,
+        and not "syntactic" equality.
+        That is, we do not care about the tree structure itself,
+        and only care about the contents of what the tree contains.
+
+        HINT:
+        Convert the contents of both trees into a sorted list,
+        then compare those sorted lists for equality.
+        '''
+
+        list1 = self.to_list('inorder')
+        list2 = t2.to_list('inorder')
+        if list1 == list2:
+            return True
+        else:
+            return False
 
     def __iter__(self):
         for value in super().__iter__():
